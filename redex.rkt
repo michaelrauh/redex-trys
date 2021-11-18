@@ -1,12 +1,5 @@
 #lang racket
 (require redex)
-(define-language bool-any-lang
-  [B true
-     false
-     (v B B)]
-  [C (v C B)
-     (v B C)
-     hole])
 
 (define-language addition
   [N 0
@@ -16,10 +9,6 @@
   [C (+ C N)
      (+ N C)
      hole])
-
-(redex-match addition
-             (in-hole C (+ 1 N))
-             (term (+ 1 2)))
 
 (define addition-red
   (reduction-relation
